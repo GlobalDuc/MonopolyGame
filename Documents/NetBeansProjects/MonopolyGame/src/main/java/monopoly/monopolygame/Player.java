@@ -1,5 +1,4 @@
-package Controller;
-
+package monopoly.monopolygame;
 
 import java.awt.Color;
 import java.awt.Font;
