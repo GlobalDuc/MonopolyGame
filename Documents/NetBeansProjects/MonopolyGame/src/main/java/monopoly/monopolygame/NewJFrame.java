@@ -79,7 +79,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel1.add(btnExit);
         btnExit.setBounds(700, 610, 240, 90);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\hadot\\OneDrive\\Documents\\NetBeansProjects\\monopoly\\img\\mono (7).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\hadot\\OneDrive\\Documents\\NetBeansProjects\\MonopolyGame\\Documents\\NetBeansProjects\\MonopolyGame\\img\\mono (7).png")); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1800, 850);
