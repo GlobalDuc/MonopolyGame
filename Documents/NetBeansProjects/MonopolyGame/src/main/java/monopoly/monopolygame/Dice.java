@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Dice extends JPanel implements ActionListener {
@@ -65,12 +64,4 @@ public class Dice extends JPanel implements ActionListener {
   public int getFaceValue() {
     return this.faceValue;
   }
-   public static void main(String[] args) {
-      JFrame frame = new JFrame("Dice Panel");
-      Dice dicePanel = new Dice(6);
-      frame.getContentPane().add(dicePanel);
-      frame.setSize(300, 300);
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setVisible(true);
-   }
 }
