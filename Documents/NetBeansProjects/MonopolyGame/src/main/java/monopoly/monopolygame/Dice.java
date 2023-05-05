@@ -2,25 +2,13 @@ package monopoly.monopolygame;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class Dice extends JPanel implements ActionListener {
-   private final int numberOfSides;
+public abstract class Dice extends JPanel implements ActionListener {
    private int faceValue;
-   private final JButton rollButton;
-
-   public Dice(int numberOfSides) {
-      this.numberOfSides = numberOfSides;
-      this.rollButton = new JButton("Roll");
-      this.rollButton.addActionListener(this);
-      this.add(rollButton);
-   }
-
    @Override
    public void paintComponent(Graphics g) {
       super.paintComponent(g);
@@ -48,13 +36,6 @@ public class Dice extends JPanel implements ActionListener {
          g.fillOval(x + 10, y + diceSize / 2 - 5, 10, 10); 
          g.fillOval(x + diceSize - 20, y + diceSize / 2 - 5, 10, 10); 
       }
-   }
-
-   @Override
-   public void actionPerformed(ActionEvent e) {
-      Random rand = new Random();
-      this.faceValue = rand.nextInt(this.numberOfSides) + 1;
-      repaint();
    }
    public void roll() {
     Random rand = new Random();
