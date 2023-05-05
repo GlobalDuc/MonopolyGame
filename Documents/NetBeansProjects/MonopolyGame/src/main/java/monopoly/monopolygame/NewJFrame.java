@@ -111,7 +111,7 @@ public class NewJFrame extends javax.swing.JFrame {
         btnStart.setFocusable(false);
         btnStart.addActionListener(e -> {
         this.dispose();
-        //board = new Board();
+        new Board();
         });
     }//GEN-LAST:event_btnStartActionPerformed
 

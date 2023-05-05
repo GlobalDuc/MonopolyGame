@@ -11,6 +11,6 @@ package monopoly.monopolygame;
 public class MonopolyGame {
                       
     public static void main(String[] args) {
-        new NewJFrame();
+        new Board();
     }
 }
