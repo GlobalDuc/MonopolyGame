@@ -11,6 +11,6 @@ package monopoly.monopolygame;
 public class MonopolyGame {
                       
     public static void main(String[] args) {
-        System.out.println("I love you!");
+        new NewJFrame();
     }
 }
