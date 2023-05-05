@@ -57,7 +57,14 @@ public class Dice extends JPanel implements ActionListener {
       this.faceValue = rand.nextInt(this.numberOfSides) + 1;
       repaint();
    }
+   public void roll() {
+    Random rand = new Random();
+    this.faceValue = rand.nextInt(6) + 1;
+  }
 
+  public int getFaceValue() {
+    return this.faceValue;
+  }
    public static void main(String[] args) {
       JFrame frame = new JFrame("Dice Panel");
       Dice dicePanel = new Dice(6);
