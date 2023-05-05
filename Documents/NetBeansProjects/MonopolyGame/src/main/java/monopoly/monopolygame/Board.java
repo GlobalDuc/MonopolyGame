@@ -19,19 +19,35 @@ public class Board extends JFrame {
     protected int screenWidth = 1536;
     protected int screenHeight = 864;
 
+    protected ArrayList<Player> players = new ArrayList<>();
+    protected Player player1;
+    protected Player player2;
+
     public Board() {
         setTitle("Monopoly");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        //Create players
+        JPanel panelPlayer = new JPanel();
+        player1 = new Player(1, Color.RED);
+        panelPlayer.add(player1);
+        add(player1);
+        player2 = new Player(2, Color.BLUE);
+        panelPlayer.add(player2);
+        add(player2);
+        this.add(panelPlayer);
+
         //Board panel
-        JPanel panelGame = new JPanel();
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        panelGame.setBounds(0, 0, screenWidth, screenHeight);
-        panelGame.setBackground(new Color(236, 185, 57));
+        JPanel boardGame = new JPanel();
+        boardGame.setBounds(0, 0, screenHeight, screenHeight);
+        boardGame.setBackground(new Color(236, 185, 57));
         initializeCell();
+
+        //Play game
+        
+        setVisible(true);
     }
 
     public void initializeCell() {
@@ -236,7 +252,7 @@ public class Board extends JFrame {
         lblMonopoly.setForeground(new Color(107, 227, 29));
         lblMonopoly.setBackground(Color.WHITE);
         lblMonopoly.setOpaque(true);
-        lblMonopoly.setHorizontalAlignment(SwingConstants.CENTER);
+        lblMonopoly.setHorizontalAlignment(SwingConstants.LEFT);
         lblMonopoly.setFont(new Font("Lucida Grande", Font.BOLD, 60));
         lblMonopoly.setBounds(176, 316, 500, 120);
         this.add(lblMonopoly);
