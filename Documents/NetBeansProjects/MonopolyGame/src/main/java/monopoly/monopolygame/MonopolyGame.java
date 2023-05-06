@@ -4,6 +4,8 @@
 
 package monopoly.monopolygame;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author PC 
@@ -11,6 +13,7 @@ package monopoly.monopolygame;
 public class MonopolyGame {
 
     public static void main(String[] args) {
-        new Board();
+        NewJFrame board = new NewJFrame();
+        board.setVisible(true);
     }
 }
