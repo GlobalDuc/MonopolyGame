@@ -9,7 +9,7 @@ package monopoly.monopolygame;
  * @author PC 
  */
 public class MonopolyGame {
-                      
+
     public static void main(String[] args) {
         new Board();
     }
