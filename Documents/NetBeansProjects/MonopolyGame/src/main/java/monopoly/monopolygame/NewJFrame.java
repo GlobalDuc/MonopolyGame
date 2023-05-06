@@ -100,19 +100,13 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         btnExit.setFocusable(false);
-        btnExit.addActionListener(e -> {
-        if(e.getSource() == btnExit){
-            NewJFrame.this.dispose();
-        }
-        });
+        NewJFrame.this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         btnStart.setFocusable(false);
-        btnStart.addActionListener(e -> {
-        this.dispose();
+        dispose();
         new Board();
-        });
     }//GEN-LAST:event_btnStartActionPerformed
 
     /**
