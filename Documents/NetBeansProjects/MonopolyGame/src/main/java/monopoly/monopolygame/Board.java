@@ -52,6 +52,7 @@ public final class Board extends JFrame {
         add(player1);
         player2 = new Player(2, Color.blue);
         players.add(player2);
+        
         add(player2);
 
         //Board panel
