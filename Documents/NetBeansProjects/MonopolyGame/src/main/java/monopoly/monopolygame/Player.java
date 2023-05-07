@@ -228,30 +228,31 @@ public class Player extends JPanel {
         186 + 27,
         106 + 27};
 
-//	public void move(int dicesTotal) {
-//		if(currentSquareNumber + dicesTotal > 31) {
-//			depositToWallet(200);
-//		}
-//		int targetSquare = (currentSquareNumber + dicesTotal) % 32; //%20
-//		currentSquareNumber = targetSquare;
-//		
-//		if(Board.nowPlaying == 0) {
-//			if(targetSquare == 24) {
-//				this.setLocation(xLocationsOfPlayer1[8], yLocationsOfPlayer1[8]);
-//				currentSquareNumber = 8;
-//			} else 
-//				this.setLocation(xLocationsOfPlayer1[targetSquare], yLocationsOfPlayer1[targetSquare]);
-//		} else {
-//			if(targetSquare == 24) {
-//				this.setLocation(xLocationsOfPlayer2[8], yLocationsOfPlayer2[8]);
-//				currentSquareNumber = 8;
-//			} else
-//				this.setLocation(xLocationsOfPlayer2[targetSquare], yLocationsOfPlayer2[targetSquare]);
-//		}
-//		
-//		if(ledger.containsKey(this.getCurrentSquareNumber())) {
-//			Board.infoConsole.setText("This property belongs to player "+ledger.get(this.getCurrentSquareNumber()));
-//		}
-//		//ledger.put(this.getCurrentSquareNumber(), this.getPlayerNumber());
-//	}
+    public void move(int dicesTotal) {
+        if (currentSquareNumber + dicesTotal > 31) {
+            depositToWallet(200);
+        }
+        int targetSquare = (currentSquareNumber + dicesTotal) % 32; //%20
+        currentSquareNumber = targetSquare;
+
+        if (Board.nowPlaying == 0) {
+            if (targetSquare == 24) {
+                this.setLocation(xLocationsOfPlayer1[8], yLocationsOfPlayer1[8]);
+                currentSquareNumber = 8;
+            } else {
+                this.setLocation(xLocationsOfPlayer1[targetSquare], yLocationsOfPlayer1[targetSquare]);
+            }
+        } else {
+            if (targetSquare == 24) {
+                this.setLocation(xLocationsOfPlayer2[8], yLocationsOfPlayer2[8]);
+                currentSquareNumber = 8;
+            } else {
+                this.setLocation(xLocationsOfPlayer2[targetSquare], yLocationsOfPlayer2[targetSquare]);
+            }
+        }
+
+        if (ledger.containsKey(this.getCurrentSquareNumber())) {
+            Board.infoConsole.setText("This property belongs to player " + ledger.get(this.getCurrentSquareNumber()));
+        }
+    }
 }
