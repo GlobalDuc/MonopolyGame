@@ -19,6 +19,7 @@ public class NewJFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
+        setVisible(true);
     }
 
     @SuppressWarnings("unchecked")

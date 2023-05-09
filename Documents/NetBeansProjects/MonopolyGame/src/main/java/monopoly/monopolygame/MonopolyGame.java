@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 public class MonopolyGame {
 
     public static void main(String[] args) {
-        NewJFrame board = new NewJFrame();
-        board.setVisible(true);
+       new NewJFrame();
     }
 }
