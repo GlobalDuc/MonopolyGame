@@ -17,6 +17,7 @@ public class Player extends JPanel {
     static int totalPlayers = 0; // we might need this number later on
     static HashMap<Integer, Integer> ledger = new HashMap<>();
     private int currentSquareNumber = 0; // where player is currently located on (0 - 31). initially zero
+    private boolean isJail = false;
     private ArrayList<Integer> titleDeeds = new ArrayList<Integer>(); // squares that the player has
     private int wallet = 1000; // initial money
     private JLabel tInfo = new JLabel();
@@ -58,12 +59,16 @@ public class Player extends JPanel {
     }
 
     public void buyTitleDeed(int squareNumber) {
-        if (ledger.containsKey(squareNumber)) {
-            System.out.println("It's already bought by someone. You cannot buy here.");
+        if (isJail) {
+            return;
         } else {
-            titleDeeds.add(this.getCurrentSquareNumber());
-            ledger.put(squareNumber, this.getPlayerNumber()); // everytime a player buys a title deed, it is written in ledger, for example square 1 belongs to player 2
+            if (ledger.containsKey(squareNumber)) {
+                System.out.println("It's already bought by someone. You cannot buy here.");
+            } else {
+                titleDeeds.add(this.getCurrentSquareNumber());
+                ledger.put(squareNumber, this.getPlayerNumber()); // everytime a player buys a title deed, it is written in ledger, for example square 1 belongs to player 2
 
+            }
         }
     }
 
@@ -229,6 +234,8 @@ public class Player extends JPanel {
         106 + 27};
 
     public void move(int dicesTotal) {
+        Dice dice1 = new Dice(0 + 120, 0 + 120, 40, 40);
+        Dice dice2 = new Dice(0 + 170, 0 + 120, 40, 40);
         if (currentSquareNumber + dicesTotal > 31) {
             depositToWallet(200);
         }
@@ -237,6 +244,8 @@ public class Player extends JPanel {
 
         if (Board.nowPlaying == 0) {
             if (targetSquare == 24) {
+                tInfo.setText("Jump to Jail");
+                JOptionPane.showMessageDialog(null, tInfo);
                 this.setLocation(xLocationsOfPlayer1[8], yLocationsOfPlayer1[8]);
                 currentSquareNumber = 8;
             } else {
@@ -244,6 +253,7 @@ public class Player extends JPanel {
             }
         } else {
             if (targetSquare == 24) {
+                tInfo.setText("Jump to Jail");
                 this.setLocation(xLocationsOfPlayer2[8], yLocationsOfPlayer2[8]);
                 currentSquareNumber = 8;
             } else {

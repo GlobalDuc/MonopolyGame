@@ -52,7 +52,7 @@ public final class Board extends JFrame {
         add(player1);
         player2 = new Player(2, Color.blue);
         players.add(player2);
-        
+
         add(player2);
 
         //Board panel
@@ -207,15 +207,15 @@ public final class Board extends JFrame {
             Player currentPlayer = players.get(nowPlaying);
             Player ownerOfTheSquare = players.get((Player.ledger.get(currentPlayer.getCurrentSquareNumber())) == 1 ? 0 : 1);
             infoConsole.setText("You paid to the player " + ownerOfTheSquare.getPlayerNumber());
-            
+
             int withdrawAmount = getAllSquares().get(currentPlayer.getCurrentSquareNumber()).getRentPrice();
             System.out.println(withdrawAmount);
             currentPlayer.withdrawFromWallet(withdrawAmount);
             ownerOfTheSquare.depositToWallet(withdrawAmount);
-            
+
             btnNextTurn.setEnabled(true);
             btnPayRent.setEnabled(false);
-            
+
             updatePanelPlayer1TextArea();
             updatePanelPlayer2TextArea();
         });
@@ -233,7 +233,7 @@ public final class Board extends JFrame {
                 int choice = JOptionPane.showConfirmDialog(this, "Are you sure?\nThe game will be reset", "Back to Menu", JOptionPane.YES_NO_OPTION);
                 if (choice == 0) {
                     dispose();
-                    newJFrame = new NewJFrame();
+                    new NewJFrame();
                 }
             }
         });
@@ -600,6 +600,10 @@ public final class Board extends JFrame {
 
     public static void setNowPlaying(int nowPlaying) {
         Board.nowPlaying = nowPlaying;
+    }
+
+    public void Jail() {
+        
     }
 
 }
