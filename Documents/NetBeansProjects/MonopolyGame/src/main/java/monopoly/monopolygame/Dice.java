@@ -58,7 +58,7 @@ public class Dice extends JPanel {
     }
 
     public int getFaceValue() {
-        return faceValue =4;
+        return faceValue ;
     }
 
     public Dice(int xCoord, int yCoord, int width, int height, String labelString) {

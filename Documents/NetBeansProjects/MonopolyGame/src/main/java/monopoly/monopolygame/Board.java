@@ -87,12 +87,12 @@ public final class Board extends JFrame {
                 dice1.rollDice();
                 dice2.rollDice();
                 int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
-                if (dice1.getFaceValue() == dice2.getFaceValue() || dice1.getFaceValue() == dice2.getFaceValue()) {
+                player1.move(dicesTotal);
+                if (dice1.getFaceValue() == dice2.getFaceValue()) {
                     doubleDiceForPlayer1 = true;
                 } else {
                     doubleDiceForPlayer1 = false;
                 }
-                player1.move(dicesTotal);
                 if (Player.ledger.containsKey(player1.getCurrentSquareNumber())
                         && Player.ledger.get(player1.getCurrentSquareNumber()) != player1.getPlayerNumber()) {
                     btnBuy.setEnabled(false);
@@ -120,7 +120,7 @@ public final class Board extends JFrame {
                 dice1.rollDice();
                 dice2.rollDice();
                 int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
-                if (dice1.getFaceValue() == dice2.getFaceValue() && dice1.getFaceValue() == 6 || dice1.getFaceValue() == dice2.getFaceValue() && dice1.getFaceValue() == 1) {
+                if (dice1.getFaceValue() == dice2.getFaceValue()) {
                     doubleDiceForPlayer2 = true;
                 } else {
                     doubleDiceForPlayer2 = false;
@@ -151,10 +151,10 @@ public final class Board extends JFrame {
             }
 
             btnRollDice.setEnabled(false);
-            if (doubleDiceForPlayer1 || doubleDiceForPlayer2) {
-                infoConsole.setText("Click Next Turn to allow player " + (nowPlaying == 0 ? 1 : 2) + " to Roll Dice!");
-            } else {
-                infoConsole.setText("Click Next Turn to allow player " + (nowPlaying == 1 ? 2 : 1) + " to Roll Dice!");
+            if (doubleDiceForPlayer1) {
+                infoConsole.setText("Play continues for player 1");
+            } else if(doubleDiceForPlayer2){
+                infoConsole.setText("Play continues for player 2");
             }
 
             updatePanelPlayer1TextArea();
@@ -302,7 +302,7 @@ public final class Board extends JFrame {
             "Thai Nguyen",
             "JAIL",
             "Son La",
-            "Squeeze Play",
+            "Community Chest",
             "Ha Tien",
             "Da Nang",
             "Community Chest",
@@ -314,7 +314,7 @@ public final class Board extends JFrame {
             "Binh Duong",
             "Ho Chi Minh",
             "Dong Nai",
-            "Squeeze Play",
+            "Community Chest",
             "Tay Ninh",
             "GO TO JAIL",
             "Vung Tau",
@@ -402,11 +402,16 @@ public final class Board extends JFrame {
         Square square15 = new Square(x_right, 586, 110, 80, squareNames[15], 0);
         this.add(square15);
         allSquare.add(square15);
-
+        
+        JPanel p = new JPanel();
+        JLabel lb = new JLabel();
         Square square16 = new Square(x_right, 666, 110, 100, squareNames[16], -45);
         this.add(square16);
+        lb.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\img\\Car_parking.png"));
+        p.add(lb);
         allSquare.add(square16);
         unBuyAbleSquares.add(square16);
+        
 
         // squares on the bottom
         int x_bot = 606;
@@ -603,7 +608,7 @@ public final class Board extends JFrame {
     }
 
     public void Jail() {
-        
+
     }
 
 }
