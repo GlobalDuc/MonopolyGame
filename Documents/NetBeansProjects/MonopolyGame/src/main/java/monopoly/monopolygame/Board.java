@@ -50,9 +50,9 @@ public final class Board extends JFrame {
         player1 = new Player(1, Color.RED);
         players.add(player1);
         add(player1);
+        
         player2 = new Player(2, Color.blue);
         players.add(player2);
-
         add(player2);
 
         //Board panel
@@ -403,12 +403,9 @@ public final class Board extends JFrame {
         this.add(square15);
         allSquare.add(square15);
         
-        JPanel p = new JPanel();
-        JLabel lb = new JLabel();
         Square square16 = new Square(x_right, 666, 110, 100, squareNames[16], -45);
         this.add(square16);
-        lb.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\img\\Car_parking.png"));
-        p.add(lb);
+//        lb.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\img\\Car_parking.png"));
         allSquare.add(square16);
         unBuyAbleSquares.add(square16);
         
