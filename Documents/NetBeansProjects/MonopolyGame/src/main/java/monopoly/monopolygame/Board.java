@@ -408,7 +408,6 @@ public final class Board extends JFrame {
 
         Square square16 = new Square(x_right, 666, 110, 100, squareNames[16], -45);
         this.add(square16);
-//        lb.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\img\\Car_parking.png"));
         allSquare.add(square16);
         unBuyAbleSquares.add(square16);
 

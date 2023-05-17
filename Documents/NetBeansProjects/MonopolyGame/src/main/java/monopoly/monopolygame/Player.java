@@ -326,9 +326,9 @@ public class Player extends JPanel {
             Board.nowPlaying = 0;
         }
         if (Board.nowPlaying == 0) {
-            JOptionPane.showMessageDialog(null, "Player 1 is now in jail.");
-        } else {
             JOptionPane.showMessageDialog(null, "Player 2 is now in jail.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Player 1 is now in jail.");
         }
 
         handleJail();
