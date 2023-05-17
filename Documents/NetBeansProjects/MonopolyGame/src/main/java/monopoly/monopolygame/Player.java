@@ -28,7 +28,7 @@ public class Player extends JPanel {
     static HashMap<Integer, Integer> ledger = new HashMap<>();
     private int currentSquareNumber = 0; // where player is currently located on (0 - 31). initially zero
     private ArrayList<Integer> titleDeeds = new ArrayList<Integer>(); // squares that the player has
-    private int wallet = 500; // initial money
+    private int wallet = 2000; // initial money
     private JLabel tInfo = new JLabel();
     protected BufferedImage bufferedImage1, bufferedImage2;
     protected Image img1, img2;
@@ -59,7 +59,7 @@ public class Player extends JPanel {
 
     public void depositToWallet(int depositAmount) {
         wallet += depositAmount;
-        tInfo.setText("Payday for player " + getPlayerNumber() + ". You earned $200!"); //pop-up box to show the message
+        tInfo.setText("Payday for player " + getPlayerNumber() + ". You received a profit!"); //pop-up box to show the message
         JOptionPane.showMessageDialog(null, tInfo);
     }
 
