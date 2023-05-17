@@ -28,7 +28,7 @@ public class Player extends JPanel {
     static HashMap<Integer, Integer> ledger = new HashMap<>();
     private int currentSquareNumber = 0; // where player is currently located on (0 - 31). initially zero
     private ArrayList<Integer> titleDeeds = new ArrayList<Integer>(); // squares that the player has
-    private int wallet = 2000; // initial money
+    private int wallet = 500; // initial money
     private JLabel tInfo = new JLabel();
     protected BufferedImage bufferedImage1, bufferedImage2;
     protected Image img1, img2;
@@ -338,7 +338,7 @@ public class Player extends JPanel {
         Object[] options = {"Roll the dice", "Pay $100 fine"};
         int choice = JOptionPane.showOptionDialog(
                 null,
-                "Options for " + (Board.nowPlaying) + ":",
+                "Options:",
                 "Jail Options",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE,
