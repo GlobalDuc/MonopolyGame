@@ -47,7 +47,11 @@ public class Player extends JPanel {
         if (withdrawAmount > wallet) {
             setVisible(true);
             tInfo.setText("Player " + playerNumber + " went bankrupt!"); //pop-up box to show the message
-            JOptionPane.showMessageDialog(null, tInfo);
+            int option = JOptionPane.showOptionDialog(null, "You went bankrupt!", "Game Over",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[]{"OK"}, "OK");
+            if (option == JOptionPane.OK_OPTION) {
+                System.exit(0);
+            }
         } else {
             wallet -= withdrawAmount;
         }
@@ -321,7 +325,12 @@ public class Player extends JPanel {
         } else if (Board.nowPlaying == 1) {
             Board.nowPlaying = 0;
         }
-        JOptionPane.showMessageDialog(null, "Player" + (Board.nowPlaying) + " is now in jail.");
+        if (Board.nowPlaying == 0) {
+            JOptionPane.showMessageDialog(null, "Player 1 is now in jail.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Player 2 is now in jail.");
+        }
+
         handleJail();
     }
 
