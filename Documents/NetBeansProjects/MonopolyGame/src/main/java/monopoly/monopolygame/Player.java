@@ -30,9 +30,8 @@ public class Player extends JPanel{
 	private JLabel tInfo = new JLabel();
 	protected BufferedImage bufferedImage1, bufferedImage2;
 	protected Image img1, img2;
-
-
-
+    protected Boolean isJail = false;
+    protected int targetSquare;
 
 	public ArrayList<Integer> getTitleDeeds() {
 		return titleDeeds;
@@ -43,10 +42,14 @@ public class Player extends JPanel{
 	}
 
 	public void withdrawFromWallet(int withdrawAmount) {
-		if(withdrawAmount > wallet) {
-			setVisible(false);
-			tInfo.setText("Player "+ playerNumber + " went bankrupt!"); //pop-up box to show the message
-			JOptionPane.showMessageDialog(null,tInfo);
+        if (withdrawAmount > wallet) {
+            setVisible(true);
+            tInfo.setText("Player " + playerNumber + " went bankrupt!"); //pop-up box to show the message
+            int option = JOptionPane.showOptionDialog(null, "You went bankrupt!", "Game Over",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[]{"OK"}, "OK");
+            if (option == JOptionPane.OK_OPTION) {
+                System.exit(0);
+            }
 		} else {
 			wallet -= withdrawAmount;
 		}
@@ -132,7 +135,6 @@ public class Player extends JPanel{
 
 	}
 
-
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
@@ -140,7 +142,7 @@ public class Player extends JPanel{
 	
 	int x_top = 6;
 	int y_top = 6;
-	int x_right =  706;
+    int x_right = 706;
     int y_right = 106;
 	int x_bot = 606;
 	int y_bot = 666;
@@ -279,33 +281,101 @@ public class Player extends JPanel{
 			186 + 27,
 			106 + 27};
 	
-
 	public void move(int dicesTotal) {
-		if(currentSquareNumber + dicesTotal > 31) {
+        if (currentSquareNumber + dicesTotal > 31) {
 			depositToWallet(200);
 		}
-		int targetSquare = (currentSquareNumber + dicesTotal) % 32; //%20
+        targetSquare = (currentSquareNumber + dicesTotal) % 32; //%20
 		currentSquareNumber = targetSquare;
 		
-		if(Board.nowPlaying == 0) {
-			if(targetSquare == 24) {
+        if (Board.nowPlaying == 0) {
+            if (targetSquare == 24) {
 				this.setLocation(xLocationsOfPlayer1[8], yLocationsOfPlayer1[8]);
 				currentSquareNumber = 8;
-			} else 
+                isJail = true;
+            } else {
 				this.setLocation(xLocationsOfPlayer1[targetSquare], yLocationsOfPlayer1[targetSquare]);
+            }
 		} else {
-			if(targetSquare == 24) {
+            if (targetSquare == 24) {
 				this.setLocation(xLocationsOfPlayer2[8], yLocationsOfPlayer2[8]);
 				currentSquareNumber = 8;
-			} else
+                isJail = true;
+            } else {
 				this.setLocation(xLocationsOfPlayer2[targetSquare], yLocationsOfPlayer2[targetSquare]);
 		}
+        }
+        if (isJail) {
+            goToJail();
+        }
 		
-		if(ledger.containsKey(this.getCurrentSquareNumber())) {
-			Board.infoConsole.setText("This property belongs to player "+ledger.get(this.getCurrentSquareNumber()));
+        if (ledger.containsKey(this.getCurrentSquareNumber())) {
+            Board.infoConsole.setText("This property belongs to player " + ledger.get(this.getCurrentSquareNumber()));
 		}
 		//ledger.put(this.getCurrentSquareNumber(), this.getPlayerNumber());
 	}
 
+    public void goToJail() {
+        this.isJail = true;
+        if (Board.nowPlaying == 0) {
+            Board.nowPlaying = 1;
+        } else if (Board.nowPlaying == 1) {
+            Board.nowPlaying = 0;
+        }
+        if (Board.nowPlaying == 0) {
+            JOptionPane.showMessageDialog(null, "Player 2 is now in jail.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Player 1 is now in jail.");
+        }
 	
+        handleJail();
+}
+
+    private void handleJail() {
+        Object[] options = {"Roll the dice", "Pay $100 fine"};
+        int choice = JOptionPane.showOptionDialog(
+                null,
+                "Options:",
+                "Jail Options",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]);
+
+        switch (choice) {
+            case 0:
+                System.out.println(Board.nowPlaying + " rolled " + " and ");
+                if (Board.doubleDiceForPlayer1) {
+                    getOutOfJail();
+                } else {
+                    System.out.println("You did not roll doubles. Try again in the next turn.");
+                }
+                break;
+
+            case 1:
+                if (getWallet() >= 50) {
+                    withdrawFromWallet(100);
+                    getOutOfJail();
+                } else {
+                    System.out.println("Insufficient balance to pay the fine. Try again in the next turn.");
+                }
+                break;
+            default:
+                System.out.println("Invalid choice. Try again.");
+                break;
+        }
+    }
+
+    public void getOutOfJail() {
+        this.isJail = false;
+        if (Board.nowPlaying == 0) {
+            Board.nowPlaying = 1;
+        } else if (Board.nowPlaying == 1) {
+            Board.nowPlaying = 0;
+        }
+        this.setLocation(xLocationsOfPlayer2[8], yLocationsOfPlayer2[8]);
+        currentSquareNumber = 8;
+    }
+
 }
