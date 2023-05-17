@@ -32,6 +32,8 @@ public class Player extends JPanel {
     private JLabel tInfo = new JLabel();
     protected BufferedImage bufferedImage1, bufferedImage2;
     protected Image img1, img2;
+    protected Boolean isJail = false;
+    protected int targetSquare;
 
     public ArrayList<Integer> getTitleDeeds() {
         return titleDeeds;
@@ -43,7 +45,7 @@ public class Player extends JPanel {
 
     public void withdrawFromWallet(int withdrawAmount) {
         if (withdrawAmount > wallet) {
-            setVisible(false);
+            setVisible(true);
             tInfo.setText("Player " + playerNumber + " went bankrupt!"); //pop-up box to show the message
             JOptionPane.showMessageDialog(null, tInfo);
         } else {
@@ -79,21 +81,20 @@ public class Player extends JPanel {
         ledger.put(squareNumber, playerNumber);
     }
 
-    private void importImg() {
-        InputStream is1 = getClass().getResourceAsStream("/img/cat.png");
-        InputStream is2 = getClass().getResourceAsStream("/img/hat.png");
-        try {
-            bufferedImage1 = ImageIO.read(is1);
-        } catch (IOException e) {
-        }
-        img1 = bufferedImage1.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
-        try {
-            bufferedImage2 = ImageIO.read(is2);
-        } catch (IOException e) {
-        }
-        img2 = bufferedImage2.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
-    }
-
+//    private void importImg() {
+//        InputStream is1 = getClass().getResourceAsStream("/img/cat.png");
+//        InputStream is2 = getClass().getResourceAsStream("/img/hat.png");
+//        try {
+//            bufferedImage1 = ImageIO.read(is1);
+//        } catch (IOException e) {
+//        }
+//        img1 = bufferedImage1.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+//        try {
+//            bufferedImage2 = ImageIO.read(is2);
+//        } catch (IOException e) {
+//        }
+//        img2 = bufferedImage2.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+//    }
     public Player(int xCoord, int yCoord, int width, int height) {
         setBorder(new LineBorder(new Color(0, 0, 0)));
         setBounds(xCoord, yCoord, 50, 50);
@@ -101,28 +102,35 @@ public class Player extends JPanel {
 
     }
 
-
     public Player(int playerNumber, Color color) {
-        importImg();
+////        importImg();
+//        this.playerNumber = playerNumber;
+//
+//        if (this.playerNumber == 1) {
+////            ImageIcon icon = new ImageIcon(img1);
+//            lblPlayerNumber = new JLabel();
+////            lblPlayerNumber.setIcon(icon);
+//            this.add(lblPlayerNumber);
+//            this.setBounds(playerNumber * 20, 33, 30, 30); // need to fix here for adjustable player numbers
+//            totalPlayers++;
+//        }
+//
+//        if (this.playerNumber == 2) {
+////            ImageIcon icon = new ImageIcon(img2);
+//            lblPlayerNumber = new JLabel();
+////            lblPlayerNumber.setIcon(icon);
+//            this.add(lblPlayerNumber);
+//            this.setBounds(playerNumber * 30, 33, 30, 25); // need to fix here for adjustable player numbers
+//            totalPlayers++;
         this.playerNumber = playerNumber;
-
-        if (this.playerNumber == 1) {
-            ImageIcon icon = new ImageIcon(img1);
-            lblPlayerNumber = new JLabel();
-            lblPlayerNumber.setIcon(icon);
-            this.add(lblPlayerNumber);
-            this.setBounds(playerNumber * 20, 33, 30, 30); // need to fix here for adjustable player numbers
-            totalPlayers++;
-        }
-
-        if (this.playerNumber == 2) {
-            ImageIcon icon = new ImageIcon(img2);
-            lblPlayerNumber = new JLabel();
-            lblPlayerNumber.setIcon(icon);
-            this.add(lblPlayerNumber);
-            this.setBounds(playerNumber * 30, 33, 30, 25); // need to fix here for adjustable player numbers
-            totalPlayers++;
-        }
+        this.setBackground(color);
+        lblPlayerNumber = new JLabel("" + playerNumber);
+        lblPlayerNumber.setFont(new Font("Lucida Grande", Font.BOLD, 15));
+        lblPlayerNumber.setForeground(Color.WHITE);
+        this.add(lblPlayerNumber);
+        this.setBounds(playerNumber * 30, 33, 20, 28); // need to fix here for adjustable player numbers
+        totalPlayers++;
+//        }
 
     }
 
@@ -276,13 +284,14 @@ public class Player extends JPanel {
         if (currentSquareNumber + dicesTotal > 31) {
             depositToWallet(200);
         }
-        int targetSquare = (currentSquareNumber + dicesTotal) % 32; //%20
+        targetSquare = (currentSquareNumber + dicesTotal) % 32; //%20
         currentSquareNumber = targetSquare;
 
         if (Board.nowPlaying == 0) {
             if (targetSquare == 24) {
                 this.setLocation(xLocationsOfPlayer1[8], yLocationsOfPlayer1[8]);
                 currentSquareNumber = 8;
+                isJail = true;
             } else {
                 this.setLocation(xLocationsOfPlayer1[targetSquare], yLocationsOfPlayer1[targetSquare]);
             }
@@ -290,15 +299,77 @@ public class Player extends JPanel {
             if (targetSquare == 24) {
                 this.setLocation(xLocationsOfPlayer2[8], yLocationsOfPlayer2[8]);
                 currentSquareNumber = 8;
+                isJail = true;
             } else {
                 this.setLocation(xLocationsOfPlayer2[targetSquare], yLocationsOfPlayer2[targetSquare]);
             }
+        }
+        if (isJail) {
+            goToJail();
         }
 
         if (ledger.containsKey(this.getCurrentSquareNumber())) {
             Board.infoConsole.setText("This property belongs to player " + ledger.get(this.getCurrentSquareNumber()));
         }
         //ledger.put(this.getCurrentSquareNumber(), this.getPlayerNumber());
+    }
+
+    public void goToJail() {
+        this.isJail = true;
+        if (Board.nowPlaying == 0) {
+            Board.nowPlaying = 1;
+        } else if (Board.nowPlaying == 1) {
+            Board.nowPlaying = 0;
+        }
+        JOptionPane.showMessageDialog(null, "Player" + (Board.nowPlaying) + " is now in jail.");
+        handleJail();
+    }
+
+    private void handleJail() {
+        Object[] options = {"Roll the dice", "Pay $100 fine"};
+        int choice = JOptionPane.showOptionDialog(
+                null,
+                "Options for " + (Board.nowPlaying) + ":",
+                "Jail Options",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]);
+
+        switch (choice) {
+            case 0:
+                System.out.println(Board.nowPlaying + " rolled " + " and ");
+                if (Board.doubleDiceForPlayer1) {
+                    getOutOfJail();
+                } else {
+                    System.out.println("You did not roll doubles. Try again in the next turn.");
+                }
+                break;
+
+            case 1:
+                if (getWallet() >= 50) {
+                    withdrawFromWallet(100);
+                    getOutOfJail();
+                } else {
+                    System.out.println("Insufficient balance to pay the fine. Try again in the next turn.");
+                }
+                break;
+            default:
+                System.out.println("Invalid choice. Try again.");
+                break;
+        }
+    }
+
+    public void getOutOfJail() {
+        this.isJail = false;
+        if (Board.nowPlaying == 0) {
+            Board.nowPlaying = 1;
+        } else if (Board.nowPlaying == 1) {
+            Board.nowPlaying = 0;
+        }
+        this.setLocation(xLocationsOfPlayer2[8], yLocationsOfPlayer2[8]);
+        currentSquareNumber = 8;
     }
 
 }

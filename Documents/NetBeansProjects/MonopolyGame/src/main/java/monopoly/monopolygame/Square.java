@@ -57,7 +57,6 @@ public class Square extends JPanel {
             nameLabel.setBounds(0,20,this.getWidth(),20);
             this.add(nameLabel);
         } else {
-
             nameLabel = new JLabel(labelString) {
                 @Override
                 protected void paintComponent(Graphics g) {

@@ -25,6 +25,8 @@ public final class Board extends JFrame {
     protected static JTextArea infoConsole;
     protected static int turnCounter = 0;
     protected static int nowPlaying = 0;
+    protected static int dice1;
+    protected static int dice2;
 
     protected ArrayList<Player> players = new ArrayList<>();
     protected JButton btnNextTurn;
@@ -35,8 +37,9 @@ public final class Board extends JFrame {
     protected JTextArea panelPlayer2TextArea;
     protected Player player1;
     protected Player player2;
-    protected Boolean doubleDiceForPlayer1 = false;
-    protected Boolean doubleDiceForPlayer2 = false;
+    protected static Boolean doubleDiceForPlayer1 = false;
+    protected static Boolean doubleDiceForPlayer2 = false;
+    protected Boolean isInJail;
 
     protected NewJFrame newJFrame;
 
@@ -50,7 +53,7 @@ public final class Board extends JFrame {
         player1 = new Player(1, Color.RED);
         players.add(player1);
         add(player1);
-        
+
         player2 = new Player(2, Color.blue);
         players.add(player2);
         add(player2);
@@ -153,7 +156,7 @@ public final class Board extends JFrame {
             btnRollDice.setEnabled(false);
             if (doubleDiceForPlayer1) {
                 infoConsole.setText("Play continues for player 1");
-            } else if(doubleDiceForPlayer2){
+            } else if (doubleDiceForPlayer2) {
                 infoConsole.setText("Play continues for player 2");
             }
 
@@ -402,13 +405,12 @@ public final class Board extends JFrame {
         Square square15 = new Square(x_right, 586, 110, 80, squareNames[15], 0);
         this.add(square15);
         allSquare.add(square15);
-        
+
         Square square16 = new Square(x_right, 666, 110, 100, squareNames[16], -45);
         this.add(square16);
 //        lb.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\img\\Car_parking.png"));
         allSquare.add(square16);
         unBuyAbleSquares.add(square16);
-        
 
         // squares on the bottom
         int x_bot = 606;
@@ -483,60 +485,60 @@ public final class Board extends JFrame {
         allSquare.add(square31);
 
         // setting prices
-        square01.setPrice(60);
-        square03.setPrice(65);
-        square04.setPrice(70);
-        square05.setPrice(70);
-        square06.setPrice(75);
-        square07.setPrice(75);
+        square01.setPrice(200);
+        square03.setPrice(200);
+        square04.setPrice(200);
+        square05.setPrice(200);
+        square06.setPrice(200);
+        square07.setPrice(200);
 
-        square09.setPrice(85);
-        square10.setPrice(90);
-        square11.setPrice(95);
-        square12.setPrice(100);
-        square14.setPrice(100);
-        square15.setPrice(105);
+        square09.setPrice(200);
+        square10.setPrice(200);
+        square11.setPrice(200);
+        square12.setPrice(200);
+        square14.setPrice(200);
+        square15.setPrice(200);
 
-        square17.setPrice(115);
-        square19.setPrice(115);
-        square20.setPrice(120);
-        square21.setPrice(120);
-        square23.setPrice(125);
+        square17.setPrice(200);
+        square19.setPrice(200);
+        square20.setPrice(200);
+        square21.setPrice(200);
+        square23.setPrice(200);
 
-        square25.setPrice(130);
-        square26.setPrice(130);
-        square27.setPrice(135);
-        square29.setPrice(135);
-        square30.setPrice(140);
-        square31.setPrice(145);
+        square25.setPrice(200);
+        square26.setPrice(200);
+        square27.setPrice(200);
+        square29.setPrice(200);
+        square30.setPrice(200);
+        square31.setPrice(200);
 
         // setting rent prices
-        square01.setRentPrice(5);
-        square03.setRentPrice(5);
-        square04.setRentPrice(10);
-        square05.setRentPrice(15);
-        square06.setRentPrice(15);
-        square07.setRentPrice(20);
+        square01.setRentPrice(50);
+        square03.setRentPrice(50);
+        square04.setRentPrice(100);
+        square05.setRentPrice(150);
+        square06.setRentPrice(150);
+        square07.setRentPrice(200);
 
-        square09.setRentPrice(20);
-        square10.setRentPrice(25);
-        square11.setRentPrice(30);
-        square12.setRentPrice(35);
-        square14.setRentPrice(35);
-        square15.setRentPrice(40);
+        square09.setRentPrice(200);
+        square10.setRentPrice(250);
+        square11.setRentPrice(300);
+        square12.setRentPrice(350);
+        square14.setRentPrice(350);
+        square15.setRentPrice(400);
 
-        square17.setRentPrice(45);
-        square19.setRentPrice(50);
-        square20.setRentPrice(60);
-        square21.setRentPrice(65);
-        square23.setRentPrice(65);
+        square17.setRentPrice(450);
+        square19.setRentPrice(500);
+        square20.setRentPrice(600);
+        square21.setRentPrice(650);
+        square23.setRentPrice(650);
 
-        square25.setRentPrice(70);
-        square26.setRentPrice(75);
-        square27.setRentPrice(70);
-        square29.setRentPrice(75);
-        square30.setRentPrice(80);
-        square31.setRentPrice(80);
+        square25.setRentPrice(700);
+        square26.setRentPrice(750);
+        square27.setRentPrice(700);
+        square29.setRentPrice(750);
+        square30.setRentPrice(800);
+        square31.setRentPrice(800);
 
         JLabel lblMonopoly = new JLabel("MONOPOLY") {
             @Override
@@ -602,10 +604,6 @@ public final class Board extends JFrame {
 
     public static void setNowPlaying(int nowPlaying) {
         Board.nowPlaying = nowPlaying;
-    }
-
-    public void Jail() {
-
     }
 
 }
