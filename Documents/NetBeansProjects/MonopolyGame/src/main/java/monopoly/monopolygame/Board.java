@@ -296,37 +296,37 @@ public final class Board extends JFrame {
     public void initializeCell() {
         String[] squareNames = {
             "GO",
-            "Ha Noi",
+            "Sai Gon",
             "Community Chest",
-            "Hai Phong",
-            "Phu Yen",
-            "Cao Bang",
-            "Lang Son",
-            "Thai Nguyen",
-            "JAIL",
-            "Son La",
-            "Community Chest",
-            "Ha Tien",
             "Da Nang",
+            "Ha Noi",
+            "Shanghai",
+            "MaCau",
+            "Beijing",
+            "JAIL",
+            "Kyoto",
             "Community Chest",
-            "Binh Thuan",
-            "Ninh Thuan",
+            "Osaka",
+            "Tokyo",
+            "Community Chest",
+            "Busan",
+            "Seoul",
             "FREE PARKING",
-            "Khanh Hoa",
+            "Mascow",
             "Pay Taxes",
-            "Binh Duong",
-            "Ho Chi Minh",
-            "Dong Nai",
+            "Moska",
+            "Liverpool",
+            "Manchester",
             "Community Chest",
-            "Tay Ninh",
+            "London",
             "GO TO JAIL",
-            "Vung Tau",
-            "Long An",
-            "Ben Tre",
+            "Marseille",
+            "Lyon",
+            "Paris",
             "Chance",
-            "Vinh Long",
-            "Phan Thiet",
-            "Quang Ngai"
+            "Washington",
+            "Los Angeles",
+            "New York"
         };
 
         // squares on the top
@@ -485,60 +485,60 @@ public final class Board extends JFrame {
         allSquare.add(square31);
 
         // setting prices
-        square01.setPrice(200);
-        square03.setPrice(200);
-        square04.setPrice(200);
-        square05.setPrice(200);
-        square06.setPrice(200);
-        square07.setPrice(200);
+        square01.setPrice(30);
+        square03.setPrice(40);
+        square04.setPrice(50);
+        square05.setPrice(65);
+        square06.setPrice(75);
+        square07.setPrice(85);
 
-        square09.setPrice(200);
-        square10.setPrice(200);
-        square11.setPrice(200);
-        square12.setPrice(200);
-        square14.setPrice(200);
-        square15.setPrice(200);
+        square09.setPrice(100);
+        square10.setPrice(110);
+        square11.setPrice(120);
+        square12.setPrice(150);
+        square14.setPrice(165);
+        square15.setPrice(180);
 
-        square17.setPrice(200);
-        square19.setPrice(200);
-        square20.setPrice(200);
-        square21.setPrice(200);
-        square23.setPrice(200);
+        square17.setPrice(190);
+        square19.setPrice(210);
+        square20.setPrice(225);
+        square21.setPrice(235);
+        square23.setPrice(245);
 
-        square25.setPrice(200);
-        square26.setPrice(200);
-        square27.setPrice(200);
-        square29.setPrice(200);
-        square30.setPrice(200);
-        square31.setPrice(200);
+        square25.setPrice(280);
+        square26.setPrice(290);
+        square27.setPrice(300);
+        square29.setPrice(330);
+        square30.setPrice(350);
+        square31.setPrice(400);
 
         // setting rent prices
-        square01.setRentPrice(50);
-        square03.setRentPrice(50);
-        square04.setRentPrice(100);
-        square05.setRentPrice(150);
-        square06.setRentPrice(150);
-        square07.setRentPrice(200);
+        square01.setRentPrice(25);
+        square03.setRentPrice(45);
+        square04.setRentPrice(55);
+        square05.setRentPrice(60);
+        square06.setRentPrice(70);
+        square07.setRentPrice(80);
 
-        square09.setRentPrice(200);
-        square10.setRentPrice(250);
-        square11.setRentPrice(300);
-        square12.setRentPrice(350);
-        square14.setRentPrice(350);
-        square15.setRentPrice(400);
+        square09.setRentPrice(90);
+        square10.setRentPrice(100);
+        square11.setRentPrice(110);
+        square12.setRentPrice(140);
+        square14.setRentPrice(150);
+        square15.setRentPrice(165);
 
-        square17.setRentPrice(450);
-        square19.setRentPrice(500);
-        square20.setRentPrice(600);
-        square21.setRentPrice(650);
-        square23.setRentPrice(650);
+        square17.setRentPrice(180);
+        square19.setRentPrice(200);
+        square20.setRentPrice(210);
+        square21.setRentPrice(230);
+        square23.setRentPrice(240);
 
-        square25.setRentPrice(700);
-        square26.setRentPrice(750);
-        square27.setRentPrice(700);
-        square29.setRentPrice(750);
-        square30.setRentPrice(800);
-        square31.setRentPrice(800);
+        square25.setRentPrice(270);
+        square26.setRentPrice(280);
+        square27.setRentPrice(300);
+        square29.setRentPrice(320);
+        square30.setRentPrice(340);
+        square31.setRentPrice(410);
 
         JLabel lblMonopoly = new JLabel("MONOPOLY") {
             @Override
