@@ -308,7 +308,7 @@ public final class Board extends JFrame {
             "Community Chest",
             "Osaka",
             "Tokyo",
-            "Chance",
+            "Community Chest",
             "Busan",
             "Seoul",
             "FREE PARKING",
