@@ -56,7 +56,7 @@ public class Player extends JPanel {
 
     public void depositToWallet(int depositAmount) {
         wallet += depositAmount;
-        tInfo.setText("Payday for player " + getPlayerNumber() + ". You earned $200!"); //pop-up box to show the message
+        tInfo.setText("Payday for player " + getPlayerNumber() + ". You earned a profit!"); //pop-up box to show the message
         JOptionPane.showMessageDialog(null, tInfo);
     }
 
