@@ -1,3 +1,10 @@
+/*Name: NH3-TTH01
+Trịnh Văn Đức - ITITIU21182
+Hà Đỗ Tây Đô - ITITIU21177
+Trần Thanh Huy - ITITIU21011
+Le Quan Phat Thanh - ITITIU21312
+Purpose: This class is to create plot of land in the chessboard and set it buy and rent price
+*/
 package monopoly.monopolygame;
 
 import java.awt.Color;

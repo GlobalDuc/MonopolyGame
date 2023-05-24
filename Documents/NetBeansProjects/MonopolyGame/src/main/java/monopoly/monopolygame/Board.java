@@ -1,7 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+/*Name: NH3-TTH01
+Trịnh Văn Đức - ITITIU21182
+Hà Đỗ Tây Đô - ITITIU21177
+Trần Thanh Huy - ITITIU21011
+Le Quan Phat Thanh - ITITIU21312
+Purpose: The main interface of the game
+*/
 package monopoly.monopolygame;
 
 import javax.swing.*;
